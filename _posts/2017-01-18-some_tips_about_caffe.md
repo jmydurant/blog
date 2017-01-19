@@ -263,7 +263,7 @@ git fetch caffe
 git merge caffe/master
 ```
 
-然后在```clude/caffe/layers/python_layer.hpp```中删除下面这句话.
+然后在```include/caffe/layers/python_layer.hpp```中删除下面这句话.
 
 ``` c++
 self_.attr("phase") = static_cast<int>(this->phase_);
