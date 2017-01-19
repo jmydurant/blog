@@ -281,3 +281,22 @@ ln -s /usr/lib/x86_64-linux-gnu/libstdc++.so.6 /PATH_TO_MATLAB/sys/os/glnxa64/li
 ```
 
 最好的方式就是用python，一劳永逸。
+
+- (3). Q: make runtest时候出错，找不到cuda的库
+
+>> A: 大概是没有export CUDA的动态库, 在```~/.bashrc```里面添加即可
+
+``` bash
+# 在 .bashrc 中添加
+export CUDA_HOME=/usr/local/cuda-8.0
+export LD_LIBRARY_PATH=${CUDA_HOME}/lib64:$LD_LIBRARY_PATH
+```
+
+其实，runtest并不是特别重要，不影响caffe的使用
+
+
+## 结语
+
+caffe这个东西更新非常快，API会不断的变化。所以遇到了不同的问题还需要不同的应对方式。遇到具体问题还是去咨询一下学长比较好！！
+公共机器在没有资源分隔的情况下，对于系统驱动之类的东西，还是要慎重再慎重！！
+话说，谁把docker恢复一下！！
