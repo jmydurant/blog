@@ -246,7 +246,7 @@ make matcaffe
 
 ## 杂项
 
-- 1. Q: 实验室小朋友很多人需要使用Faster RCNN。但是其中caffe版本过老，应该怎么解决呢？
+- (1). Q: 实验室小朋友很多人需要使用Faster RCNN。但是其中caffe版本过老，应该怎么解决呢？
 
 >> A: 可以参考[这里](https://github.com/rbgirshick/py-faster-rcnn/issues/237)。
 
@@ -269,7 +269,7 @@ git merge caffe/master
 self_.attr("phase") = static_cast<int>(this->phase_);
 ```
 
-- 2. Q: matcaffe警告说g++版本不符合，怎么办？
+- (2). Q: matcaffe警告说g++版本不符合，怎么办？
 
 >> A: 辣鸡Matlab，编译的时候用g++ 5.0之后的版本是没有啥大的问题的。Matlab的libstc++有些过时，如果出现问题，可以将这个动态库软连接到自己系统比较新的库就可以解决。
 
