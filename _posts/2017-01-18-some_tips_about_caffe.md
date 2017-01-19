@@ -232,3 +232,52 @@ make test -j20
 make runtest -j20
 ``` 
 
+如果需要编译pycaffe或者matcaffe,则
+
+``` bash
+# pycaffe
+make pycaffe
+
+# matcaffe
+make matcaffe
+```
+
+如果没有出现错误，那么恭喜你，编译成功！！
+
+## 杂项
+
+- 1. Q: 实验室小朋友很多人需要使用Faster RCNN。但是其中caffe版本过老，应该怎么解决呢？
+
+>> A: 可以参考[这里](https://github.com/rbgirshick/py-faster-rcnn/issues/237)。
+
+>> 我来解释一下这里安装的大概过程，clone了Faster RCNN之后，进入caffe目录，merge最新的caffe(**注意，以后遇到caffe过老的问题时，用这个方法可能会有用，但是请慎用**)。
+
+>> 因为merge了caffe之后要解决caffe的兼容问题，所以修改了文件的一处位置。这里仍然不能使用CuDnn
+
+如果懒得看，那么就做如下操作：
+
+``` bash
+cd caffe-fast-rcnn  
+git remote add caffe https://github.com/BVLC/caffe.git  
+git fetch caffe  
+git merge caffe/master
+```
+
+然后在```clude/caffe/layers/python_layer.hpp```中删除下面这句话.
+
+``` c++
+self_.attr("phase") = static_cast<int>(this->phase_);
+```
+
+- 2. Q: matcaffe警告说g++版本不符合，怎么办？
+
+>> A: 辣鸡Matlab，编译的时候用g++ 5.0之后的版本是没有啥大的问题的。Matlab的libstc++有些过时，如果出现问题，可以将这个动态库软连接到自己系统比较新的库就可以解决。
+
+>> 大致方法如下:
+
+```
+# 把PATH_TO_MATLAB换成MATLAB所在位置
+ln -s /usr/lib/x86_64-linux-gnu/libstdc++.so.6 /PATH_TO_MATLAB/sys/os/glnxa64/libstdc++.so.6
+```
+
+最好的方式就是用python，一劳永逸。
